@@ -1,3 +1,10 @@
-__pycache__
 temp/*
 env/*
+*.pyc
+*~
+/.vscode
+__pycache__
+myvenv
+db.sqlite3
+/static
+.DS_Store
