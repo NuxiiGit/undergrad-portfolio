@@ -5,7 +5,7 @@
 		<div class="post">
 			<h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
 			{% if post.published_date %}
-				<p><i>{{ post.published_date }}</i></p>
+				<p class="date">Published: <i>{{ post.published_date }}</i></p>
 			{% endif %}
 			<br>
 			<p>

@@ -17,6 +17,10 @@
 	font-family : var(--font-prop);
 }
 
+.date {
+	opacity : 0.5;
+}
+
 body {
 	margin : 0px;
 	background-color : var(--background);
@@ -25,12 +29,12 @@ body {
 a {
 	color : var(--colour-accent);
 	font-family : var(--font-mono);
-	text-decoration : none;
-	transition: color 0.25s;
+	transition : color 0.25s;
 }
 
 a:hover {
 	color : var(--foreground);
+	text-decoration-style : dashed;
 }
 
 a:active {
