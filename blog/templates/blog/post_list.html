@@ -9,8 +9,8 @@
 			{% endif %}
 			<br>
 			<p>
-				{% if posts|length > 1 and post.text|length > 100 %}
-					{{ post.text|slice:"0:100"|linebreaksbr }} [...]
+				{% if posts|length > 1 and post.text|length > 500 %}
+					{{ post.text|slice:"0:500"|linebreaksbr }} ...
 				{% else %}
 					{{ post.text|linebreaksbr }}
 				{% endif %}
