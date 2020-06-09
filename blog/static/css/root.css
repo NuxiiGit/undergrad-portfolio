@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap');
+
+:root {
+	--colour-light : #f9f9f9;
+	--colour-dark : #202020;
+	--colour-accent : #ffc343;
+	--font-prop : "Open Sans", "Times New Roman", Times, serif;
+	--font-mono : "Ubuntu Mono", "Courier New", Courier, monospace;
+
+	--background : var(--colour-light);
+	--foreground : var(--colour-dark);
+}
+
+* {
+	color : var(--foreground);
+	font-family : var(--font-prop);
+}
+
+body {
+	margin : 0px;
+	background-color : var(--background);
+}
+
+a {
+	color : var(--colour-accent);
+	font-family : var(--font-mono);
+	text-decoration : none;
+	transition: color 0.25s;
+}
+
+a:hover {
+	color : var(--foreground);
+}
+
+a:active {
+	text-decoration : underline;
+}
