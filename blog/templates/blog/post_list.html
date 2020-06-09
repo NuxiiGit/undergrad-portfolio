@@ -8,7 +8,13 @@
 				<p><i>{{ post.published_date }}</i></p>
 			{% endif %}
 			<br>
-			<p>{{ post.text|linebreaksbr }}</p>
+			<p>
+				{% if posts|length > 1 and post.text|length > 100 %}
+					{{ post.text|slice:"0:100"|linebreaksbr }} [...]
+				{% else %}
+					{{ post.text|linebreaksbr }}
+				{% endif %}
+			</p>
 			<br>
 		</div>
 	{% endfor %}
