@@ -34,9 +34,10 @@ a {
 
 a:hover {
 	color : var(--foreground);
-	text-decoration-style : dashed;
+	text-decoration : none;
 }
 
 a:active {
 	text-decoration : underline;
+	text-decoration-style : dashed;
 }
