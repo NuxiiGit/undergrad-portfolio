@@ -2,8 +2,10 @@ from django.conf import settings
 from django.db import models
 from django.core import validators
 
+MAX_LENGTH = 255
+
 class Contact(models.Model):
-	email = models.EmailField(max_length=70)
+	email = models.EmailField(max_length=MAX_LENGTH)
 	phone = models.CharField(max_length=16, validators=[validators.RegexValidator(r'\+(\d+)')])
 	website = models.URLField(default='')
 
@@ -14,7 +16,7 @@ class Contact(models.Model):
 		return self.email
 
 class Skill(models.Model):
-	title = models.CharField(max_length=200)
+	title = models.CharField(max_length=MAX_LENGTH)
 	description = models.TextField()
 
 	def publish(self):
@@ -26,8 +28,8 @@ class Skill(models.Model):
 class Experience(models.Model):
 	start_date = models.DateTimeField(blank=True, null=True)
 	start_end = models.DateTimeField(blank=True, null=True)
-	employer = models.CharField(max_length=200)
-	position = models.CharField(max_length=200)
+	employer = models.CharField(max_length=MAX_LENGTH)
+	position = models.CharField(max_length=MAX_LENGTH)
 	description = models.TextField()
 
 	def publish(self):
@@ -39,11 +41,11 @@ class Experience(models.Model):
 class Education(models.Model):
 	start_date = models.DateTimeField(blank=True, null=True)
 	start_end = models.DateTimeField(blank=True, null=True)
-	degree = models.CharField(max_length=200)
-	subject = models.CharField(max_length=200)
-	location = models.CharField(max_length=200)
-	city = models.CharField(max_length=200)
-	country = models.CharField(max_length=200)
+	degree = models.CharField(max_length=MAX_LENGTH)
+	subject = models.CharField(max_length=MAX_LENGTH)
+	institution = models.CharField(max_length=MAX_LENGTH)
+	city = models.CharField(max_length=MAX_LENGTH)
+	country = models.CharField(max_length=MAX_LENGTH)
 
 	def publish(self):
 		self.save()
