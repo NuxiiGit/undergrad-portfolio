@@ -20,7 +20,7 @@ class Post(models.Model):
 class Contact(models.Model):
 	email = models.EmailField(max_length=70)
 	phone = models.CharField(max_length=16, validators=[validators.RegexValidator(r'\+(\d+)')])
-	site = models.URLField()
+	website = models.URLField(default='')
 
 	def publish(self):
 		self.save()
@@ -30,7 +30,7 @@ class Contact(models.Model):
 
 class Skill(models.Model):
 	title = models.CharField(max_length=200)
-	text = models.TextField()
+	description = models.TextField()
 
 	def publish(self):
 		self.save()
