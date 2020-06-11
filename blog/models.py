@@ -20,6 +20,7 @@ class Post(models.Model):
 class Contact(models.Model):
 	email = models.EmailField(max_length=70)
 	phone = models.CharField(max_length=16, validators=[validators.RegexValidator(r'\+(\d+)')])
+	site = models.URLField()
 
 	def publish(self):
 		self.save()
