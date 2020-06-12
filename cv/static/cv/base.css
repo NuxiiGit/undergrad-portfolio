@@ -20,3 +20,7 @@ body {
 	margin : 0px;
 	background-color : var(--background);
 }
+
+.section {
+	margin-left : 2em;
+}

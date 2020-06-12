@@ -1,5 +1,10 @@
 {% extends 'cv/base.html' %}
 
 {% block content %}
-	hi
+	<h4>Skills:</h4>
+	<div class="section">
+		{% for skill in skills %}
+			<p><u>{{ skill.title }}</u>: {{ skill.description }}</p>
+		{% endfor %}
+	</div>
 {% endblock %}
