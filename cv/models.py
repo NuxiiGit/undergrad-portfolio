@@ -27,7 +27,7 @@ class Skill(models.Model):
 
 class Experience(models.Model):
 	start_date = models.DateTimeField(null=True)
-	start_end = models.DateTimeField(null=True)
+	end_date = models.DateTimeField(null=True)
 	employer = models.CharField(max_length=MAX_LENGTH, null=True)
 	position = models.CharField(max_length=MAX_LENGTH, null=True)
 	description = models.TextField()
@@ -40,7 +40,7 @@ class Experience(models.Model):
 
 class Education(models.Model):
 	start_date = models.DateTimeField(null=True)
-	start_end = models.DateTimeField(null=True)
+	end_date = models.DateTimeField(null=True)
 	qualification = models.CharField(max_length=MAX_LENGTH, null=True)
 	subject = models.CharField(max_length=MAX_LENGTH, null=True)
 	institution = models.CharField(max_length=MAX_LENGTH, null=True)
