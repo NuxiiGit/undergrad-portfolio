@@ -26,6 +26,10 @@ body {
 	background-color : var(--background);
 }
 
+p {
+	text-align : justify;
+}
+
 a {
 	color : var(--colour-accent);
 	font-family : var(--font-mono);
