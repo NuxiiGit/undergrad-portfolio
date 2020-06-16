@@ -8,7 +8,7 @@
 				<p class="date">Published: <i>{{ post.published_date }}</i></p>
 			{% endif %}
 			<br>
-			<p>
+			<p class="body">
 				{% if posts|length > 1 and post.text|length > 500 %}
 					{{ post.text|slice:"0:500"|linebreaksbr }} ...
 				{% else %}
