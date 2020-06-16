@@ -16,3 +16,4 @@ class BlogViewTestCase(TestCase):
 		html = response.content.decode('utf8').strip()
 		self.assertTrue(html.startswith('<html>'))
 		self.assertTrue(html.endswith('</html>'))
+		print(html)
