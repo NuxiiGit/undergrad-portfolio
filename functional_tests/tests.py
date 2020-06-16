@@ -21,4 +21,6 @@ class ExampleTestCase(StaticLiveServerTestCase):
 
 	def test_example(self):
 		self.browser.get(self.live_server_url)
-		self.assertEquals(1, 1)
+		post = self.browser.find_element_by_id(self.POST_TITLE)
+		body = post.find_element_by_class_name('body')
+		self.assertEqual(body.text, self.POST_TEXT)
