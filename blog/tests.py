@@ -8,15 +8,20 @@ from .views import post_list, post_detail
 
 class BlogViewTestCase(TestCase):
 
+	POST_TITLE = 'Test'
+	POST_TEXT = 'Hello world.'
+
+	def setUp(self):
+		Post.objects.create(title=self.POST_TITLE, text=self.POST_TEXT, published_date=timezone.now())
+
 	def test_root_url_resolves_to_blog(self):
 		found = resolve('/')
 		self.assertEqual(found.func, post_list)
 
-	def test_blog_returns_html(self):
-		Post.objects.create(title='Sample title', text='Test', published_date=timezone.now())
+	def test_root_equivalent_to_detail_for_singleton_post(self):
 		request = HttpRequest()
-		response = post_list(request)
-		html = response.content.decode('utf8').strip()
-		self.assertTrue(html.startswith('<html>'))
-		self.assertTrue(html.endswith('</html>'))
-		print(html)
+		response_list = post_list(request)
+		response_detail = post_detail(request, 1)
+		html_list = response_list.content.decode('utf8')
+		html_detail = response_detail.content.decode('utf8')
+		self.assertEquals(html_list, html_detail)
