@@ -25,3 +25,7 @@ class BlogViewTestCase(TestCase):
 		html_list = response_list.content.decode('utf8')
 		html_detail = response_detail.content.decode('utf8')
 		self.assertEquals(html_list, html_detail)
+
+	def test_unpublished_post_does_not_affect_post_list(self):
+		Post.objects.create(title="Unpublished", text="Work in progress.")
+		self.test_root_equivalent_to_detail_for_singleton_post()
