@@ -4,6 +4,16 @@ from django.core import validators
 
 MAX_LENGTH = 255
 
+class Name(models.Model):
+	first = models.CharField(max_length=16, default="")
+	last = models.CharField(max_length=16, default="")
+
+	def publish(self):
+		self.save()
+
+	def __str__(self):
+		return self.first + " " + self.last
+
 class Contact(models.Model):
 	email = models.EmailField(max_length=MAX_LENGTH, null=True)
 	phone = models.CharField(max_length=16, default="+000", validators=[validators.RegexValidator(r'\+(\d+)')])

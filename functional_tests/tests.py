@@ -28,7 +28,8 @@ class BlogTestCase(StaticLiveServerTestCase):
 
 class CvTestCase(StaticLiveServerTestCase):
 	
-	CV_NAME = 'Bob'
+	CV_NAME = 'Mann'
+	CV_SURNAME = 'Darin'
 
 	def setUp(self):
 		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
@@ -41,4 +42,4 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.browser.get(self.URL)
 		header = self.browser.find_element_by_id("header")
 		first_name = header.find_element_by_tag_name("span")
-		self.assertEqual(first_name.text), CV_NAME)
+		self.assertEqual(first_name.text), CV_NAME + " " + CV_SURNAME)
