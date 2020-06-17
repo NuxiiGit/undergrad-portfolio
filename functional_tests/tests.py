@@ -4,6 +4,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.utils import timezone
 
 from blog.models import Post
+from cv.models import Name
 
 import time
 
@@ -34,6 +35,7 @@ class CvTestCase(StaticLiveServerTestCase):
 	def setUp(self):
 		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
 		self.URL = self.live_server_url + "/cv"
+		Name.objects.create(first=self.CV_NAME, last=self.CV_SURNAME)
 	
 	def tearDown(self):
 		self.browser.close()
@@ -42,4 +44,4 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.browser.get(self.URL)
 		header = self.browser.find_element_by_id("header")
 		first_name = header.find_element_by_tag_name("span")
-		self.assertEqual(first_name.text), CV_NAME + " " + CV_SURNAME)
+		self.assertEqual(first_name.text, self.CV_NAME + " " + self.CV_SURNAME)
