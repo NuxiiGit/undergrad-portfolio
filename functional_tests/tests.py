@@ -28,9 +28,17 @@ class BlogTestCase(StaticLiveServerTestCase):
 
 class CvTestCase(StaticLiveServerTestCase):
 	
+	CV_NAME = 'Bob'
+
 	def setUp(self):
 		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
 		self.URL = self.live_server_url + "/cv"
 	
 	def tearDown(self):
 		self.browser.close()
+
+	def test_cv_displays_name(self):
+		self.browser.get(self.URL)
+		header = self.browser.find_element_by_id("header")
+		first_name = header.find_element_by_tag_name("span")
+		self.assertEqual(first_name.text), CV_NAME)
