@@ -5,7 +5,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.utils import timezone
 
 from blog.models import Post
-from cv.models import Name
+from cv.models import Name, Contact, Skill, Experience, Education
 
 import time
 
@@ -37,11 +37,16 @@ class CvTestCase(StaticLiveServerTestCase):
 	
 	CV_NAME = 'Mann'
 	CV_SURNAME = 'Darin'
+	CV_EMAIL = 'example@gmail.com'
+	CV_SKILL_TITLE = 'Eating'
+	CV_SKILL = 'Lots of food.'
 
 	def setUp(self):
 		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
 		self.URL = self.live_server_url + "/cv"
 		Name.objects.create(first=self.CV_NAME, last=self.CV_SURNAME)
+		Contact.objects.create(email=self.CV_EMAIL)
+		Skill.objects.create(title=self.CV_SKILL_TITLE, description=self.CV_SKILL)
 	
 	def tearDown(self):
 		self.browser.close()
@@ -51,6 +56,22 @@ class CvTestCase(StaticLiveServerTestCase):
 		header = self.browser.find_element_by_id("header")
 		first_name = header.find_element_by_tag_name("span")
 		self.assertEqual(first_name.text, self.CV_NAME + " " + self.CV_SURNAME)
+	
+	def test_cv_displays_contact(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Contact")
+		div = header.find_element_by_tag_name("div")
+		email = div.find_element_by_class_name("email")
+		self.assertEqual(email.text, self.CV_EMAIL)
+	
+	def test_cv_displays_skill(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Skills")
+		div = header.find_element_by_tag_name("div")
+		title = div.find_element_by_class_name("title")
+		desc = div.find_element_by_class_name("desc")
+		self.assertEqual(title.text, self.CV_SKILL_TITLE)
+		self.assertEqual(desc.text, self.CV_SKILL)
 
 class CvEmptyTestCase(StaticLiveServerTestCase):
 	
