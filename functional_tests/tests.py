@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.utils import timezone
@@ -65,3 +66,7 @@ class CvEmptyTestCase(StaticLiveServerTestCase):
 		header = self.browser.find_element_by_id("header")
 		default = header.find_element_by_tag_name("span")
 		self.assertEqual(default.text, "CV")
+	
+	def test_cv_contact_default(self):
+		self.browser.get(self.URL)
+		self.assertRaises(NoSuchElementException, lambda: self.browser.find_element_by_id("Contact"))
