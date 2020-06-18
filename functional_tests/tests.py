@@ -50,3 +50,18 @@ class CvTestCase(StaticLiveServerTestCase):
 		header = self.browser.find_element_by_id("header")
 		first_name = header.find_element_by_tag_name("span")
 		self.assertEqual(first_name.text, self.CV_NAME + " " + self.CV_SURNAME)
+
+class CvEmptyTestCase(StaticLiveServerTestCase):
+	
+	def setUp(self):
+		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
+		self.URL = self.live_server_url + "/cv"
+	
+	def tearDown(self):
+		self.browser.close()
+
+	def test_cv_header_default(self):
+		self.browser.get(self.URL)
+		header = self.browser.find_element_by_id("header")
+		default = header.find_element_by_tag_name("span")
+		self.assertEqual(default.text, "CV")
