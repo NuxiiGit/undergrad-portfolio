@@ -1,12 +1,16 @@
 {% extends 'cv/base.html' %}
 
 {% block header %}
-	{% for name in names %}
-		{% if forloop.counter0 %}
-			/
-		{% endif %}
-		<b><span>{{ name }}</span></b>
-	{% endfor %}
+	{% if names|length > 0 %}
+		{% for name in names %}
+			{% if forloop.counter0 %}
+				/
+			{% endif %}
+			<b><span>{{ name }}</span></b>
+		{% endfor %}
+	{% else %}
+		<b><span>CV</span></b>
+	{% endif %}
 {% endblock %}
 
 {% block content %}
