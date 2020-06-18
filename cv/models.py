@@ -16,8 +16,8 @@ class Name(models.Model):
 
 class Contact(models.Model):
 	email = models.EmailField(max_length=MAX_LENGTH, null=True)
-	phone = models.CharField(max_length=16, default="+000", validators=[validators.RegexValidator(r'\+(\d+)')])
-	website = models.URLField(default='')
+	phone = models.CharField(max_length=16, blank=True, null=True, validators=[validators.RegexValidator(r'\+(\d+)')])
+	website = models.URLField(blank=True, null=True)
 
 	def publish(self):
 		self.save()

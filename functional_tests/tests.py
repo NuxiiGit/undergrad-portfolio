@@ -60,14 +60,14 @@ class CvTestCase(StaticLiveServerTestCase):
 	def test_cv_displays_contact(self):
 		self.browser.get(self.URL)
 		section = self.browser.find_element_by_id("Contact")
-		div = header.find_element_by_tag_name("div")
+		div = section.find_element_by_tag_name("div")
 		email = div.find_element_by_class_name("email")
 		self.assertEqual(email.text, self.CV_EMAIL)
 	
 	def test_cv_displays_skill(self):
 		self.browser.get(self.URL)
 		section = self.browser.find_element_by_id("Skills")
-		div = header.find_element_by_tag_name("div")
+		div = section.find_element_by_tag_name("div")
 		title = div.find_element_by_class_name("title")
 		desc = div.find_element_by_class_name("desc")
 		self.assertEqual(title.text, self.CV_SKILL_TITLE)
