@@ -33,11 +33,14 @@
 	{% endif %}
 	{% if skills|length > 0 %}
 	<div id="Skills" class="section">
-		<div>
-			{% for skill in skills %}
-				<p><u>{{ skill.title }}</u>: {{ skill.description }}</p>
-			{% endfor %}
-		</div>
+		{% for skill in skills %}
+			<div>
+				<p>
+					<b class="title">{{ skill.title }}</b>
+					<br><span class="desc">{{ skill.description }}</span>
+				</p>
+			</div>
+		{% endfor %}
 	</div>
 	{% endif %}
 	{% if experiences|length > 0 %}
