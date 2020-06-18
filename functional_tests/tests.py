@@ -26,6 +26,11 @@ class BlogTestCase(StaticLiveServerTestCase):
 		post = self.browser.find_element_by_id(self.POST_TITLE)
 		body = post.find_element_by_class_name('body')
 		self.assertEqual(body.text, self.POST_TEXT)
+	
+	def test_homepage_correctly_redirects_to_cv(self):
+		self.browser.get(self.URL)
+		self.browser.find_element_by_id("cv").click()
+		self.assertEqual(self.browser.current_url, self.URL + "/cv")
 
 class CvTestCase(StaticLiveServerTestCase):
 	
