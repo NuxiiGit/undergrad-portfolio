@@ -38,6 +38,8 @@ class CvTestCase(StaticLiveServerTestCase):
 	CV_NAME = 'Mann'
 	CV_SURNAME = 'Darin'
 	CV_EMAIL = 'example@gmail.com'
+	CV_PHONE = '+8000'
+	CV_SITE = 'example.com'
 	CV_SKILL_TITLE = 'Eating'
 	CV_SKILL = 'Lots of food.'
 
@@ -45,7 +47,7 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
 		self.URL = self.live_server_url + "/cv"
 		Name.objects.create(first=self.CV_NAME, last=self.CV_SURNAME)
-		Contact.objects.create(email=self.CV_EMAIL)
+		Contact.objects.create(email=self.CV_EMAIL, phone=self.CV_PHONE, website=self.CV_SITE)
 		Skill.objects.create(title=self.CV_SKILL_TITLE, description=self.CV_SKILL)
 	
 	def tearDown(self):
@@ -62,7 +64,11 @@ class CvTestCase(StaticLiveServerTestCase):
 		section = self.browser.find_element_by_id("Contact")
 		div = section.find_element_by_tag_name("div")
 		email = div.find_element_by_class_name("email")
+		phone = div.find_element_by_class_name("phone")
+		site = div.find_element_by_class_name("website")
 		self.assertEqual(email.text, self.CV_EMAIL)
+		self.assertEqual(phone.text, self.CV_PHONE)
+		self.assertEqual(site.text, self.CV_SITE)
 	
 	def test_cv_displays_skill(self):
 		self.browser.get(self.URL)
