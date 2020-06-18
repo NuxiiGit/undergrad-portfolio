@@ -14,13 +14,16 @@
 {% endblock %}
 
 {% block content %}
-	<div id="Contact" class="section">
-		<div>
-			{% for contact in contacts %}
-				<p>{{ contact }}</p>
-			{% endfor %}
+	{% if contacts|length > 0 %}
+		<div id="Contact" class="section">
+			<div>
+				{% for contact in contacts %}
+					<p>{{ contact }}</p>
+				{% endfor %}
+			</div>
 		</div>
-	</div>
+	{% endif %}
+	{% if skills|length > 0 %}
 	<div id="Skills" class="section">
 		<div>
 			{% for skill in skills %}
@@ -28,6 +31,8 @@
 			{% endfor %}
 		</div>
 	</div>
+	{% endif %}
+	{% if experiences|length > 0 %}
 	<div id="Experience" class="section">
 		<div>
 			{% for experience in experiences %}
@@ -35,6 +40,8 @@
 			{% endfor %}
 		</div>
 	</div>
+	{% endif %}
+	{% if educations|length > 0 %}
 	<div id="Education" class="section">
 		<div>
 			{% for education in educations %}
@@ -42,4 +49,5 @@
 			{% endfor %}
 		</div>
 	</div>
+	{% endif %}
 {% endblock %}
