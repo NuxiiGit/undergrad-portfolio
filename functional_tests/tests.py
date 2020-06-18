@@ -42,6 +42,9 @@ class CvTestCase(StaticLiveServerTestCase):
 	CV_SITE = 'example.com'
 	CV_SKILL_TITLE = 'Eating'
 	CV_SKILL = 'Lots of food.'
+	CV_EMPLOYER = 'Outer Space'
+	CV_POSITION_TITLE = 'Nothing Inspector'
+	CV_POSITION = 'Does absolutely nothing.'
 
 	def setUp(self):
 		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
@@ -49,6 +52,7 @@ class CvTestCase(StaticLiveServerTestCase):
 		Name.objects.create(first=self.CV_NAME, last=self.CV_SURNAME)
 		Contact.objects.create(email=self.CV_EMAIL, phone=self.CV_PHONE, website=self.CV_SITE)
 		Skill.objects.create(title=self.CV_SKILL_TITLE, description=self.CV_SKILL)
+		Experience.objects.create(employer=self.CV_EMPLOYER, position=self.CV_POSITION_TITLE, description=self.CV_POSITION, start_date=timezone.now(), end_date=timezone.now())
 	
 	def tearDown(self):
 		self.browser.close()
@@ -78,6 +82,17 @@ class CvTestCase(StaticLiveServerTestCase):
 		desc = div.find_element_by_class_name("desc")
 		self.assertEqual(title.text, self.CV_SKILL_TITLE)
 		self.assertEqual(desc.text, self.CV_SKILL)
+
+	def test_cv_displays_experience(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Experience")
+		div = section.find_element_by_tag_name("div")
+		employer = div.find_element_by_class_name("employer")
+		position = div.find_element_by_class_name("position")
+		desc = div.find_element_by_class_name("desc")
+		self.assertEqual(employer.text, self.CV_EMPLOYER)
+		self.assertEqual(position.text, self.CV_POSITION_TITLE)
+		self.assertEqual(desc.text, self.CV_POSITION)
 
 class CvEmptyTestCase(StaticLiveServerTestCase):
 	
