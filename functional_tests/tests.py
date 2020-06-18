@@ -74,3 +74,7 @@ class CvEmptyTestCase(StaticLiveServerTestCase):
 	def test_cv_skill_default(self):
 		self.browser.get(self.URL)
 		self.assertRaises(NoSuchElementException, lambda: self.browser.find_element_by_id("Skill"))
+
+	def test_cv_experience_default(self):
+		self.browser.get(self.URL)
+		self.assertRaises(NoSuchElementException, lambda: self.browser.find_element_by_id("Experience"))
