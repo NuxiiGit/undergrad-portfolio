@@ -10,28 +10,32 @@
 {% endblock %}
 
 {% block content %}
-	<h4>Contacts:</h4>
-	<div class="section">
-		{% for contact in contacts %}
-			<p>{{ contact }}</p>
-		{% endfor %}
+	<div id="Contacts" class="section">
+		<div>
+			{% for contact in contacts %}
+				<p>{{ contact }}</p>
+			{% endfor %}
+		</div>
 	</div>
-	<h4>Skills:</h4>
-	<div class="section">
-		{% for skill in skills %}
-			<p><u>{{ skill.title }}</u>: {{ skill.description }}</p>
-		{% endfor %}
+	<div id="Skills" class="section">
+		<div>
+			{% for skill in skills %}
+				<p><u>{{ skill.title }}</u>: {{ skill.description }}</p>
+			{% endfor %}
+		</div>
 	</div>
-	<h4>Experience:</h4>
-	<div class="section">
-		{% for experience in experiences %}
-			<p>{{ experience }}</p>
-		{% endfor %}
+	<div id="Experience" class="section">
+		<div>
+			{% for experience in experiences %}
+				<p>{{ experience }}</p>
+			{% endfor %}
+		</div>
 	</div>
-	<h4>Education:</h4>
-	<div class="section">
-		{% for education in educations %}
-			<p>{{ education }}</p>
-		{% endfor %}
+	<div id="Education" class="section">
+		<div>
+			{% for education in educations %}
+				<p>{{ education }}</p>
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}

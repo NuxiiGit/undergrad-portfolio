@@ -21,6 +21,12 @@ body {
 	background-color : var(--background);
 }
 
-.section {
+.section::before {
+	content : attr(id);
+	font-size : large;
+}
+
+.section > div {
+	margin-top : 5px;
 	margin-left : 2em;
 }
