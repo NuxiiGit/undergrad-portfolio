@@ -1,5 +1,14 @@
 {% extends 'cv/base.html' %}
 
+{% block header %}
+	{% for name in names %}
+		{% if forloop.counter0 %}
+			/
+		{% endif %}
+		<b><span>{{ name }}</span></b>
+	{% endfor %}
+{% endblock %}
+
 {% block content %}
 	<h4>Contacts:</h4>
 	<div class="section">
