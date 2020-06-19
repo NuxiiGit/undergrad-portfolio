@@ -9,6 +9,9 @@ from cv.models import Name, Contact, Skill, Experience, Education
 
 import time
 
+def show_datetime(dt):
+	
+
 class BlogTestCase(StaticLiveServerTestCase):
 	
 	POST_TITLE = 'Test'
