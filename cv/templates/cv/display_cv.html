@@ -32,33 +32,36 @@
 		</div>
 	{% endif %}
 	{% if skills|length > 0 %}
-	<div id="Skills" class="section">
-		{% for skill in skills %}
-			<div>
-				<p>
-					<b class="title">{{ skill.title }}</b>
-					<br><span class="desc">{{ skill.description }}</span>
-				</p>
-			</div>
-		{% endfor %}
-	</div>
+		<div id="Skills" class="section">
+			{% for skill in skills %}
+				<div>
+					<p>
+						<b class="title">{{ skill.title }}</b>
+						<br><span class="desc">{{ skill.description }}</span>
+					</p>
+				</div>
+			{% endfor %}
+		</div>
 	{% endif %}
 	{% if experiences|length > 0 %}
-	<div id="Experience" class="section">
-		<div>
+		<div id="Experience" class="section">
 			{% for experience in experiences %}
-				<p>{{ experience }}</p>
+				<div>
+					<p>
+						<b class="employer">{{ experience.employer }}</b>, <i class="position">{{ experience.position }}</i>
+						<br><span class="desc">{{ experience.description }}</span>
+					</p>
+				</div>
 			{% endfor %}
 		</div>
-	</div>
 	{% endif %}
 	{% if educations|length > 0 %}
-	<div id="Education" class="section">
-		<div>
-			{% for education in educations %}
-				<p>{{ education }}</p>
-			{% endfor %}
+		<div id="Education" class="section">
+			<div>
+				{% for education in educations %}
+					<p>{{ education }}</p>
+				{% endfor %}
+			</div>
 		</div>
-	</div>
 	{% endif %}
 {% endblock %}
