@@ -57,11 +57,13 @@
 	{% endif %}
 	{% if educations|length > 0 %}
 		<div id="Education" class="section">
-			<div>
-				{% for education in educations %}
-					<p>{{ education }}</p>
-				{% endfor %}
-			</div>
+			{% for education in educations %}
+				<div>
+					<p>
+						<b><span class="institution">{{ education.institution }}</span>, <span class="city">{{ education.city }}</span> (<span class="country">{{ education.country }}</span>), <span class="qualification">{{ education.qualification }}</span> in <span class="subject">{{ education.subject }}</span></b>
+					</p>
+				</div>
+			{% endfor %}
 		</div>
 	{% endif %}
 {% endblock %}

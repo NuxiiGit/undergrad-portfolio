@@ -50,14 +50,35 @@ class CvTestCase(StaticLiveServerTestCase):
 	CV_INSTITUTION = 'The School'
 	CV_CITY = 'Town City'
 	CV_COUNTRY = 'Earth'
+	CV_TIMEZONE = timezone.now()
 
 	def setUp(self):
 		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
 		self.URL = self.live_server_url + "/cv"
-		Name.objects.create(first=self.CV_NAME, last=self.CV_SURNAME)
-		Contact.objects.create(email=self.CV_EMAIL, phone=self.CV_PHONE, website=self.CV_SITE)
-		Skill.objects.create(title=self.CV_SKILL_TITLE, description=self.CV_SKILL)
-		Experience.objects.create(employer=self.CV_EMPLOYER, position=self.CV_POSITION_TITLE, description=self.CV_POSITION, start_date=timezone.now(), end_date=timezone.now())
+		Name.objects.create(
+				first=self.CV_NAME,
+				last=self.CV_SURNAME)
+		Contact.objects.create(
+				email=self.CV_EMAIL,
+				phone=self.CV_PHONE,
+				website=self.CV_SITE)
+		Skill.objects.create(
+				title=self.CV_SKILL_TITLE,
+				description=self.CV_SKILL)
+		Experience.objects.create(
+				employer=self.CV_EMPLOYER,
+				position=self.CV_POSITION_TITLE,
+				description=self.CV_POSITION,
+				start_date=self.CV_TIMEZONE,
+				end_date=self.CV_TIMEZONE)
+		Education.objects.create(
+				qualification=self.CV_QUALIFICATION,
+				subject=self.CV_SUBJECT,
+				institution=self.CV_INSTITUTION,
+				city=self.CV_CITY,
+				country=self.CV_COUNTRY,
+				start_date=self.CV_TIMEZONE,
+				end_date=self.CV_TIMEZONE)
 	
 	def tearDown(self):
 		self.browser.close()
