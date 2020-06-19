@@ -45,6 +45,11 @@ class CvTestCase(StaticLiveServerTestCase):
 	CV_EMPLOYER = 'Outer Space'
 	CV_POSITION_TITLE = 'Nothing Inspector'
 	CV_POSITION = 'Does absolutely nothing.'
+	CV_QUALIFICATION = 'Phd'
+	CV_SUBJECT = 'Sleeping'
+	CV_INSTITUTION = 'The School'
+	CV_CITY = 'Town City'
+	CV_COUNTRY = 'Earth'
 
 	def setUp(self):
 		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
@@ -93,6 +98,21 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.assertEqual(employer.text, self.CV_EMPLOYER)
 		self.assertEqual(position.text, self.CV_POSITION_TITLE)
 		self.assertEqual(desc.text, self.CV_POSITION)
+	
+	def test_cv_displays_education(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Education")
+		div = section.find_element_by_tag_name("div")
+		qualification = div.find_element_by_class_name("qualification")
+		subject = div.find_element_by_class_name("subject")
+		institution = div.find_element_by_class_name("institution")
+		city = div.find_element_by_class_name("city")
+		country = div.find_element_by_class_name("country")
+		self.assertEqual(qualification.text, self.CV_QUALIFICATION)
+		self.assertEqual(subject.text, self.CV_SUBJECT)
+		self.assertEqual(institution.text, self.CV_INSTITUTION)
+		self.assertEqual(city.text, self.CV_CITY)
+		self.assertEqual(country.text, self.CV_COUNTRY)
 
 class CvEmptyTestCase(StaticLiveServerTestCase):
 	
