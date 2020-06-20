@@ -124,8 +124,8 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.assertEqual(employer.text, self.CV_EMPLOYER)
 		self.assertEqual(position.text, self.CV_POSITION_TITLE)
 		self.assertEqual(desc.text, self.CV_POSITION)
-		self.assertEqual(start_date.text, show_datetime(self.CV_TIMEZONE))
-		self.assertEqual(end_date.text, show_datetime(self.CV_POSITION))
+		self.assertEqual(start_date.text, str(self.CV_TIMEZONE))
+		self.assertEqual(end_date.text, str(self.CV_POSITION))
 	
 	def test_cv_displays_education(self):
 		self.browser.get(self.URL)
