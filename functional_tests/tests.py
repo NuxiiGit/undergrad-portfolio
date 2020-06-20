@@ -10,7 +10,7 @@ from cv.models import Name, Contact, Skill, Experience, Education
 import time
 
 def show_datetime(dt):
-	
+	return dt.strftime("%-d %b %Y, %-I:%M ") + ("a.m." if dt.hour < 12 else "p.m.")
 
 class BlogTestCase(StaticLiveServerTestCase):
 	
@@ -119,9 +119,13 @@ class CvTestCase(StaticLiveServerTestCase):
 		employer = div.find_element_by_class_name("employer")
 		position = div.find_element_by_class_name("position")
 		desc = div.find_element_by_class_name("desc")
+		start_date = div.find_element_by_class_name("start_date")
+		end_date = div.find_element_by_class_name("end_date")
 		self.assertEqual(employer.text, self.CV_EMPLOYER)
 		self.assertEqual(position.text, self.CV_POSITION_TITLE)
 		self.assertEqual(desc.text, self.CV_POSITION)
+		self.assertEqual(start_date.text, show_datetime(self.CV_TIMEZONE))
+		self.assertEqual(end_date.text, show_datetime(self.CV_POSITION))
 	
 	def test_cv_displays_education(self):
 		self.browser.get(self.URL)
