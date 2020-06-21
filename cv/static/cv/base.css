@@ -30,3 +30,7 @@ body {
 	margin-top : 5px;
 	margin-left : 2em;
 }
+
+#Contact > div * {
+	font-weight : bold;
+}
