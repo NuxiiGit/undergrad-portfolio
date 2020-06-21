@@ -151,6 +151,22 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.assertEqual(start_date.text, show_datetime(self.CV_TIMEZONE))
 		self.assertEqual(end_date.text, show_datetime(self.CV_TIMEZONE))
 
+
+class CvPartialTestCase(StaticLiveServerTestCase):
+	
+	def setUp(self):
+		self.browser = make_browser()
+		self.URL = self.live_server_url + "/cv"
+	
+	def tearDown(self):
+		self.browser.close()
+
+	def test_cv_experience_no_end_date(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Experience")
+		div = section.find_element_by_tag_name("div")
+		self.assertRaises(NoSuchElementException, lambda: div.find_element_by_class_name("end_date"))
+
 class CvEmptyTestCase(StaticLiveServerTestCase):
 	
 	def setUp(self):
