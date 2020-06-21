@@ -194,12 +194,18 @@ class CvPartialTestCase(StaticLiveServerTestCase):
 	def tearDown(self):
 		self.browser.close()
 
-	def test_cv_experience_no_phone_or_website(self):
+	def test_cv_contact_no_phone_or_website(self):
 		self.browser.get(self.URL)
 		section = self.browser.find_element_by_id("Contact")
 		div = section.find_element_by_tag_name("div")
 		self.assertRaises(NoSuchElementException, lambda: div.find_element_by_class_name("phone"))
 		self.assertRaises(NoSuchElementException, lambda: div.find_element_by_class_name("website"))
+
+	def test_cv_skill_no_description(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Skills")
+		div = section.find_element_by_tag_name("div")
+		self.assertRaises(NoSuchElementException, lambda: div.find_element_by_class_name("desc"))
 
 	def test_cv_experience_no_end_date(self):
 		self.browser.get(self.URL)
