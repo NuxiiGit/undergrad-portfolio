@@ -180,6 +180,12 @@ class CvPartialTestCase(StaticLiveServerTestCase):
 		section = self.browser.find_element_by_id("Experience")
 		div = section.find_element_by_tag_name("div")
 		self.assertRaises(NoSuchElementException, lambda: div.find_element_by_class_name("end_date"))
+	
+	def test_cv_education_no_end_date(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Education")
+		div = section.find_element_by_tag_name("div")
+		self.assertRaises(NoSuchElementException, lambda: div.find_element_by_class_name("end_date"))
 
 class CvEmptyTestCase(StaticLiveServerTestCase):
 	
