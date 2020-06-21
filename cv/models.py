@@ -50,7 +50,7 @@ class Experience(models.Model):
 
 class Education(models.Model):
 	start_date = models.DateField(null=True)
-	end_date = models.DateField(null=True)
+	end_date = models.DateField(blank=True, null=True)
 	qualification = models.CharField(max_length=MAX_LENGTH, null=True)
 	subject = models.CharField(max_length=MAX_LENGTH, null=True)
 	institution = models.CharField(max_length=MAX_LENGTH, null=True)

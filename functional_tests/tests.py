@@ -171,6 +171,13 @@ class CvPartialTestCase(StaticLiveServerTestCase):
 				position=self.CV_POSITION_TITLE,
 				description=self.CV_POSITION,
 				start_date=self.CV_TIMEZONE)
+		Education.objects.create(
+				qualification=self.CV_QUALIFICATION,
+				subject=self.CV_SUBJECT,
+				institution=self.CV_INSTITUTION,
+				city=self.CV_CITY,
+				country=self.CV_COUNTRY,
+				start_date=self.CV_TIMEZONE)
 	
 	def tearDown(self):
 		self.browser.close()
