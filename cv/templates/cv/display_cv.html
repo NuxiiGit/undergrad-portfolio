@@ -48,7 +48,7 @@
 			{% for experience in experiences %}
 				<div>
 					<p>
-						<b><span class="start_date">{{ experience.start_date }}</span> - <span class="end_date">{{ experience.end_date }}</span></b> <i><span class="employer">{{ experience.employer }}</span>, <span class="position">{{ experience.position }}</span></i>
+						<b><span class="start_date">{{ experience.start_date }}</span>{% if experience.end_date %} -- <span class="end_date">{{ experience.end_date }}</span>{% endif %}</b> <i><span class="employer">{{ experience.employer }}</span>, <span class="position">{{ experience.position }}</span></i>
 						<br><span class="desc">{{ experience.description }}</span>
 					</p>
 				</div>

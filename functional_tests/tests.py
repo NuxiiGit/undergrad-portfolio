@@ -151,12 +151,26 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.assertEqual(start_date.text, show_datetime(self.CV_TIMEZONE))
 		self.assertEqual(end_date.text, show_datetime(self.CV_TIMEZONE))
 
-
 class CvPartialTestCase(StaticLiveServerTestCase):
 	
+	CV_EMPLOYER = 'Time'
+	CV_POSITION_TITLE = 'Ultimate'
+	CV_POSITION = 'The most powerful being in the universe.'
+	CV_QUALIFICATION = 'Fish'
+	CV_SUBJECT = 'Box'
+	CV_INSTITUTION = 'Pizza Hut'
+	CV_CITY = 'Undefined'
+	CV_COUNTRY = 'Object'
+	CV_TIMEZONE = timezone.now()
+
 	def setUp(self):
 		self.browser = make_browser()
 		self.URL = self.live_server_url + "/cv"
+		Experience.objects.create(
+				employer=self.CV_EMPLOYER,
+				position=self.CV_POSITION_TITLE,
+				description=self.CV_POSITION,
+				start_date=self.CV_TIMEZONE)
 	
 	def tearDown(self):
 		self.browser.close()
