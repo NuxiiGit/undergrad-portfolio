@@ -10,7 +10,7 @@ from cv.models import Name, Contact, Skill, Experience, Education
 import time
 
 def show_datetime(dt):
-	return dt.strftime("%-d %b %Y")
+	return dt.strftime("%e %b %Y")
 
 def make_browser():
 	op = webdriver.ChromeOptions()
