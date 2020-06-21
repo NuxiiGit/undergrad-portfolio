@@ -108,6 +108,15 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.assertEqual(phone.text, self.CV_PHONE)
 		self.assertEqual(site.text, self.CV_SITE)
 	
+	def text_cv_contact_website_link_is_correct(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Contact")
+		div = section.find_element_by_tag_name("div")
+		site = div.find_element_by_class_name("website")
+		ref = site.get_attribute("href")
+		site.click()
+		self.assertEqual(self.browser.current_url, ref)
+	
 	def test_cv_displays_skill(self):
 		self.browser.get(self.URL)
 		section = self.browser.find_element_by_id("Skills")
