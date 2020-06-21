@@ -141,11 +141,15 @@ class CvTestCase(StaticLiveServerTestCase):
 		institution = div.find_element_by_class_name("institution")
 		city = div.find_element_by_class_name("city")
 		country = div.find_element_by_class_name("country")
+		start_date = div.find_element_by_class_name("start_date")
+		end_date = div.find_element_by_class_name("end_date")
 		self.assertEqual(qualification.text, self.CV_QUALIFICATION)
 		self.assertEqual(subject.text, self.CV_SUBJECT)
 		self.assertEqual(institution.text, self.CV_INSTITUTION)
 		self.assertEqual(city.text, self.CV_CITY)
 		self.assertEqual(country.text, self.CV_COUNTRY)
+		self.assertEqual(start_date.text, show_datetime(self.CV_TIMEZONE))
+		self.assertEqual(end_date.text, show_datetime(self.CV_TIMEZONE))
 
 class CvEmptyTestCase(StaticLiveServerTestCase):
 	
