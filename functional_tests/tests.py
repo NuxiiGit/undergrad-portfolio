@@ -162,6 +162,7 @@ class CvTestCase(StaticLiveServerTestCase):
 
 class CvPartialTestCase(StaticLiveServerTestCase):
 	
+	CV_EMAIL = 'helloworld@fakename.com'
 	CV_EMPLOYER = 'Time'
 	CV_POSITION_TITLE = 'Ultimate'
 	CV_POSITION = 'The most powerful being in the universe.'
@@ -175,6 +176,8 @@ class CvPartialTestCase(StaticLiveServerTestCase):
 	def setUp(self):
 		self.browser = make_browser()
 		self.URL = self.live_server_url + "/cv"
+		Contact.objects.create(
+				email=self.CV_EMAIL)
 		Experience.objects.create(
 				employer=self.CV_EMPLOYER,
 				position=self.CV_POSITION_TITLE,
@@ -190,6 +193,13 @@ class CvPartialTestCase(StaticLiveServerTestCase):
 	
 	def tearDown(self):
 		self.browser.close()
+
+	def test_cv_experience_no_phone_or_website(self):
+		self.browser.get(self.URL)
+		section = self.browser.find_element_by_id("Contact")
+		div = section.find_element_by_tag_name("div")
+		self.assertRaises(NoSuchElementException, lambda: div.find_element_by_class_name("phone"))
+		self.assertRaises(NoSuchElementException, lambda: div.find_element_by_class_name("website"))
 
 	def test_cv_experience_no_end_date(self):
 		self.browser.get(self.URL)
