@@ -10,7 +10,12 @@ from cv.models import Name, Contact, Skill, Experience, Education
 import time
 
 def show_datetime(dt):
-	return dt.strftime("%-d %b %Y, %-I:%M ") + ("a.m." if dt.hour < 12 else "p.m.")
+	return dt.strftime("%-d %b %Y")
+
+def make_browser():
+	op = webdriver.ChromeOptions()
+	op.add_argument('headless')
+	return webdriver.Chrome(executable_path='functional_tests/chromedriver.exe', options=op)
 
 class BlogTestCase(StaticLiveServerTestCase):
 	
@@ -18,7 +23,7 @@ class BlogTestCase(StaticLiveServerTestCase):
 	POST_TEXT = 'Hello world.'
 
 	def setUp(self):
-		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
+		self.browser = make_browser()
 		self.URL = self.live_server_url
 		Post.objects.create(title=self.POST_TITLE, text=self.POST_TEXT, published_date=timezone.now())
 	
@@ -56,7 +61,7 @@ class CvTestCase(StaticLiveServerTestCase):
 	CV_TIMEZONE = timezone.now()
 
 	def setUp(self):
-		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
+		self.browser = make_browser()
 		self.URL = self.live_server_url + "/cv"
 		Name.objects.create(
 				first=self.CV_NAME,
@@ -124,8 +129,8 @@ class CvTestCase(StaticLiveServerTestCase):
 		self.assertEqual(employer.text, self.CV_EMPLOYER)
 		self.assertEqual(position.text, self.CV_POSITION_TITLE)
 		self.assertEqual(desc.text, self.CV_POSITION)
-		self.assertEqual(start_date.text, str(self.CV_TIMEZONE))
-		self.assertEqual(end_date.text, str(self.CV_POSITION))
+		self.assertEqual(start_date.text, show_datetime(self.CV_TIMEZONE))
+		self.assertEqual(end_date.text, show_datetime(self.CV_TIMEZONE))
 	
 	def test_cv_displays_education(self):
 		self.browser.get(self.URL)
@@ -145,7 +150,7 @@ class CvTestCase(StaticLiveServerTestCase):
 class CvEmptyTestCase(StaticLiveServerTestCase):
 	
 	def setUp(self):
-		self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
+		self.browser = make_browser()
 		self.URL = self.live_server_url + "/cv"
 	
 	def tearDown(self):
