@@ -27,7 +27,7 @@ class Contact(models.Model):
 
 class Skill(models.Model):
 	title = models.CharField(max_length=MAX_LENGTH, null=True)
-	description = models.TextField()
+	description = models.TextField(blank=True)
 
 	def publish(self):
 		self.save()
