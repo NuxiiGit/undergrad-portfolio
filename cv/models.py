@@ -37,7 +37,7 @@ class Skill(models.Model):
 
 class Experience(models.Model):
 	start_date = models.DateField(null=True)
-	end_date = models.DateField(null=True)
+	end_date = models.DateField(blank=True, null=True)
 	employer = models.CharField(max_length=MAX_LENGTH, null=True)
 	position = models.CharField(max_length=MAX_LENGTH, null=True)
 	description = models.TextField()
