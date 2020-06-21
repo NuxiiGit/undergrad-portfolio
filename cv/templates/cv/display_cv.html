@@ -37,7 +37,9 @@
 				<div>
 					<p>
 						<b class="title">{{ skill.title }}</b>
-						<br><span class="desc">{{ skill.description }}</span>
+						{% if skill.description %}
+							<br><span class="desc">{{ skill.description }}</span>
+						{% endif %}
 					</p>
 				</div>
 			{% endfor %}

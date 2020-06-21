@@ -163,6 +163,7 @@ class CvTestCase(StaticLiveServerTestCase):
 class CvPartialTestCase(StaticLiveServerTestCase):
 	
 	CV_EMAIL = 'helloworld@fakename.com'
+	CV_SKILL_TITLE = 'Breathing'
 	CV_EMPLOYER = 'Time'
 	CV_POSITION_TITLE = 'Ultimate'
 	CV_POSITION = 'The most powerful being in the universe.'
@@ -178,6 +179,8 @@ class CvPartialTestCase(StaticLiveServerTestCase):
 		self.URL = self.live_server_url + "/cv"
 		Contact.objects.create(
 				email=self.CV_EMAIL)
+		Skill.objects.create(
+				title=self.CV_SKILL_TITLE)
 		Experience.objects.create(
 				employer=self.CV_EMPLOYER,
 				position=self.CV_POSITION_TITLE,
