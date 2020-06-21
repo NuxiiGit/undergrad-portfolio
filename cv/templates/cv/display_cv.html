@@ -24,7 +24,7 @@
 							<br><span class="phone">{{ contact.phone }}</span>
 						{% endif %}
 						{% if contact.website %}
-							<br><span class="website">{{ contact.website }}</span>
+							<br><a href="{{ contact.website }}" class="website">{{ contact.website }}</a>
 						{% endif %}
 					</p>
 				</div>
