@@ -60,7 +60,7 @@
 			{% for education in educations %}
 				<div>
 					<p>
-						<b><span class="institution">{{ education.institution }}</span>, <span class="city">{{ education.city }}</span> (<span class="country">{{ education.country }}</span>), <span class="qualification">{{ education.qualification }}</span> in <span class="subject">{{ education.subject }}</span></b>
+						<b><span class="start_date">{{ education.start_date }}</span> - <span class="end_date">{{ education.end_date }}</span></b> <i><span class="institution">{{ education.institution }}</span>, <span class="city">{{ education.city }}</span> (<span class="country">{{ education.country }}</span>), <span class="qualification">{{ education.qualification }}</span> in <span class="subject">{{ education.subject }}</span></i>
 					</p>
 				</div>
 			{% endfor %}
