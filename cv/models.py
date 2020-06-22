@@ -40,7 +40,7 @@ class Experience(models.Model):
 	end_date = models.DateField(blank=True, null=True)
 	employer = models.CharField(max_length=MAX_LENGTH, null=True)
 	position = models.CharField(max_length=MAX_LENGTH, null=True)
-	description = models.TextField()
+	description = models.TextField(blank=True)
 
 	def publish(self):
 		self.save()
