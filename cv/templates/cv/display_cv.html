@@ -38,7 +38,7 @@
 					<p>
 						<b class="title">{{ skill.title }}</b>
 						{% if skill.description %}
-							<br><span class="desc">{{ skill.description }}</span>
+							<br><span class="desc">{{ skill.description|linebreaksbr }}</span>
 						{% endif %}
 					</p>
 				</div>
@@ -52,7 +52,7 @@
 					<p>
 						<b><span class="start_date">{{ experience.start_date }}</span>{% if experience.end_date %} -- <span class="end_date">{{ experience.end_date }}</span>{% endif %}</b> <i><span class="employer">{{ experience.employer }}</span>, <span class="position">{{ experience.position }}</span></i>
 						{% if experience.description %}
-							<br><span class="desc">{{ experience.description }}</span>
+							<br><span class="desc">{{ experience.description|linebreaksbr }}</span>
 						{% endif %}
 					</p>
 				</div>
